@@ -5,7 +5,7 @@ import socket
 import sys
 from gi.repository import Gtk
 
-class PartyConnecter():
+class PartyConnecter:
 
     def connect(self, server, port):
         self.client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
