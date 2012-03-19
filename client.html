@@ -1,3 +1,4 @@
+<!DOCTYPE html> 
 <html>
 <head>
 	<title>PartyPlayer Client</title>
@@ -41,13 +42,21 @@
 	</script>
 </head>
 <body>
-	<div data-role="fieldcontain">
-		<input type="search" name="search" id="search-basic" value="" />
-	</div>
-	<div data-role="controlgroup"  data-type="horizontal">
-		<a href="javascript:search()" data-role="button">Search</a>
-		<a href="javascript:url()" data-role="button">URL</a>
-	</div>		
+<div data-role="page">
+	<div data-role="header">
+		<h1>YT-PartyPlayer</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">	
+		<div data-role="fieldcontain">
+			<input type="search" name="search" id="search-basic" value="" />
+		</div>
+		<div data-role="controlgroup"  data-type="horizontal">
+			<a href="javascript:search()" data-role="button">Search</a>
+			<a href="javascript:url()" data-role="button">URL</a>
+		</div>		
+	</div><!-- /content -->
+</div><!-- /page -->		
 </body>
 </html>
 
