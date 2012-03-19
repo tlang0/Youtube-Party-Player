@@ -1,3 +1,10 @@
+# TODO: twisted python wird benötigt
+# twisted webserver starten über bereitgestellten shellscript !!!
+# youtube videos werden aufgerufen über http://localhost:8880/player?videoID=XXXXXX
+# wenn das video fertig ist kommt eine rückmeldung zum server: "fin XXXXXX"
+# XXXXXX = youtube video ID
+# thomas implementiere das + cue
+
 import socket
 from socket import AF_INET, SOCK_STREAM
 import webbrowser
@@ -23,8 +30,6 @@ def open_url(url):
     webbrowser.open(url, new=0)
 
 def main():
-    playlist = []
-
     s = socket.socket(AF_INET, SOCK_STREAM)
     host = socket.gethostname()
     port = 3421
@@ -45,6 +50,7 @@ def main():
         print "<< " + data
         if data.startswith(OPENURL):
             url = data[len(OPENURL):]
+            open_url(url)
         elif data.startswith(SEARCH):
             subject = data[len(SEARCH):]
             print "Searching on youtube for {0}...".format(subject)
@@ -54,6 +60,7 @@ def main():
                 continue
             firstentry = feed.entry[0]
             url = firstentry.media.player.url
+            open_url(url)
         c.close()
 
 if __name__ == "__main__":
