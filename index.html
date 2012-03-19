@@ -1,0 +1,68 @@
+<html>
+<head>
+	<title>PartyPlayer</title>
+	<link type="text/css" href="css/smoothness/jquery-ui-1.8.18.custom.css" rel="stylesheet" />	
+	<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="js/jquery-ui-1.8.18.custom.min.js"></script>
+	<script type="text/javascript">
+	
+		var xmlhttp;
+		if (window.XMLHttpRequest)
+		  {// code for IE7+, Firefox, Chrome, Opera, Safari
+		  xmlhttp=new XMLHttpRequest();
+		  }
+		else
+		  {// code for IE6, IE5
+		  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		  }
+	
+		function onYouTubePlayerReady(playerId) {
+  			ytplayer = document.getElementById("myytplayer");
+  			ytplayer.addEventListener("onStateChange", "onytplayerStateChange");
+		}
+		
+		function onytplayerStateChange(newState) {
+   			console.log("Player's new state: " + newState +" ID:"+ videoID);
+   			//0 = finished
+   			if (newState === 0) {
+   				xmlhttp.open("POST","http://localhost:8880/callback",true);
+				xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+				xmlhttp.send("fin " + videoID);
+   			}
+			
+		}
+		
+	
+		// get URL params		
+		(function(){
+		    var s = window.location.search.substring(1).split('&');
+		    if(!s.length) return;
+		    window.$_GET = {};
+		    for(var i  = 0; i < s.length; i++) {
+		        var parts = s[i].split('=');
+		        window.$_GET[unescape(parts[0])] = unescape(parts[1]);
+		    }
+		}())
+		
+	</script>
+</head>
+<body>
+<script type="text/javascript" src="swfobject/swfobject.js"></script>    
+  <div id="ytapiplayer">
+    You need Flash player 8+ and JavaScript enabled to view this video.
+  </div>
+
+  <script type="text/javascript">
+	var videoID = $_GET['videoID'];
+    var params = { allowScriptAccess: "always" ,
+    				allowFullScreen: "true",
+    				wmode: "window"
+    			 };
+    var atts = { id: "myytplayer" };
+    swfobject.embedSWF("http://www.youtube.com/v/"+ videoID +"?enablejsapi=1&playerapiid=ytplayer&version=3&autoplay=1&autohide=1",
+                       "ytapiplayer", "100%", "100%", "8", null, null, params, atts);
+
+</script> 
+</body>
+</html>
+
