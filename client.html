@@ -29,13 +29,13 @@
 		}())
 		
 		function search(){
-			xmlhttp.open("POST","http://localhost:8880/callback",true);
+			xmlhttp.open("POST","http://"+$('#ip').val()+":8880/callback",true);
 			xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-			xmlhttp.send("search " + $('#search-basic').val());
+			xmlhttp.send("play " + $('#search-basic').val());
 		}
 		
 		function url(){
-			xmlhttp.open("POST","http://localhost:8880/callback",true);
+			xmlhttp.open("POST","http://"+$('#ip').val()+":8880/callback",true);
 			xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 			xmlhttp.send("url " + $('#search-basic').val());
 		}
@@ -47,14 +47,16 @@
 		<h1>YT-PartyPlayer</h1>
 	</div><!-- /header -->
 
-	<div data-role="content">	
+	<div data-role="content">
 		<div data-role="fieldcontain">
 			<input type="search" name="search" id="search-basic" value="" />
 		</div>
 		<div data-role="controlgroup"  data-type="horizontal">
 			<a href="javascript:search()" data-role="button">Search</a>
 			<a href="javascript:url()" data-role="button">URL</a>
-		</div>		
+		</div>
+		<label for="ip">Server IP:</label>
+    	<input type="text" name="ip" id="ip" value="192.168.1.10"  />		
 	</div><!-- /content -->
 </div><!-- /page -->		
 </body>
