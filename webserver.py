@@ -40,7 +40,7 @@ class FormPage(Resource):
         
         ytplayer = PartyServer()
     	ytplayer.connect("127.0.0.1",3421) # lokaler yt-partyplayer server
-    	ytplayer.send('fin ' + newdata)
+    	ytplayer.send(newdata)
     	ytplayer.quit()
         
         return ''
@@ -49,6 +49,7 @@ class FormPage(Resource):
 root = Resource()
 root.putChild("callback", FormPage()) # xhttprequest 
 root.putChild("player", File("./")) # static player page
+root.putChild("client", File("./client.html")) # client page
 root.putChild("js", File("./js/"))
 root.putChild("css", File("./css/"))
 application = Application("My Web Service - PartyPlayer")

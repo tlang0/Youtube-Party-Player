@@ -1,3 +1,5 @@
+#!/usr/bin/python
+# -*- coding: utf8 -*-
 # TODO: twisted python wird benötigt
 # twisted webserver starten über bereitgestellten shellscript !!!
 # youtube videos werden aufgerufen über http://localhost:8880/player?videoID=XXXXXX

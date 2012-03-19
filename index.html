@@ -27,7 +27,7 @@
    			if (newState === 0) {
    				xmlhttp.open("POST","http://localhost:8880/callback",true);
 				xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-				xmlhttp.send(videoID);
+				xmlhttp.send("fin " + videoID);
    			}
 			
 		}
