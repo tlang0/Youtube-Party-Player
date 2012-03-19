@@ -1,11 +1,5 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # -*- coding: utf8 -*-
-# TODO: twisted python wird benötigt
-# twisted webserver starten über bereitgestellten shellscript !!!
-# youtube videos werden aufgerufen über http://localhost:8880/player?videoID=XXXXXX
-# wenn das video fertig ist kommt eine rückmeldung zum server: "fin XXXXXX"
-# XXXXXX = youtube video ID
-# thomas implementiere das + cue
 
 import socket
 import webbrowser
@@ -21,6 +15,12 @@ class Logger:
     
     def info(self, data):
         print("log: {0}".format(data))
+
+    def warning(self, data):
+        print("warning: {0}".format(data))
+
+    def error(self, data):
+        print("error: {0}".format(data))
 
     def debug(self, data):
         print("debug: {0}".format(data))
@@ -74,10 +74,10 @@ def main():
     # receive
     while True:
         c, addr = s.accept()
-        print "{0} connected".format(addr)
+        log.info("{0} connected".format(addr))
         data = c.recv(1024)
         if not data:
-            print "Failed to receive data, try again."
+            log.warning("Failed to receive data, try again.")
             c.close()
             continue
         log.recv(data)
